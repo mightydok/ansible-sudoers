@@ -46,7 +46,7 @@
 
 - name: Ensure all authorized separate sudoer specs are properly configured
   template:
-    src: sudoer_spec.j2
+    src: "{{ role_path }}/templates/sudoer_spec.j2"
     dest: "/etc/sudoers.d/{{ item.name }}"
     owner: root
     group: root
@@ -57,7 +57,7 @@
 
 - name: Ensure the sudoers file is valid and up to date (separate specs)
   template:
-    src: sudoers_nospec.j2
+    src: "{{ role_path }}/templates/sudoers_nospec.j2"
     dest: /etc/sudoers
     owner: root
     group: root
@@ -67,7 +67,7 @@
 
 - name: Ensure the sudoers file is valid and up to date (specs all in one)
   template:
-    src: sudoers_plus_spec.j2
+    src: "{{ role_path }}/templates/sudoers_plus_spec.j2"
     dest: /etc/sudoers
     owner: root
     group: root
