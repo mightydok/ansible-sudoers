@@ -51,7 +51,7 @@
     owner: root
     group: root
     mode: 0440
-    validate: visudo -cf %s
+    validate: /usr/sbin/visudo -cf %s
   with_items: '{{ sudoer_specs }}'
   when: "sudoer_separate_specs | bool"
 
@@ -62,7 +62,7 @@
     owner: root
     group: root
     mode: 0440
-    validate: visudo -cf %s
+    validate: /usr/sbin/visudo -cf %s
   when: "sudoer_separate_specs | bool"
 
 - name: Ensure the sudoers file is valid and up to date (specs all in one)
@@ -72,7 +72,7 @@
     owner: root
     group: root
     mode: 0440
-    validate: visudo -cf %s
+    validate: /usr/sbin/visudo -cf %s
   when: "not sudoer_separate_specs | bool"
 
 - name: Remove separate sudoer specs that are not authorized
