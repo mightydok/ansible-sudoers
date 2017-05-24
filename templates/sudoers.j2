@@ -3,7 +3,7 @@
 {% for name, values in default.iteritems() %}
 {% for items in values | to_list | slice(6) %}
 {% if items %}
-Defaults    {{ name }} += "{{ items | to_list | join(' ') }}"
+Defaults    {{ name }} {% if not loop.first %}+{% endif %}= "{{ items | to_list | join(' ') }}"
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -34,7 +34,7 @@ Cmnd_Alias {{ alias.name }} = {{ alias.commands | join(',') }}
 {% endif %}
 
 ## Allow root to run any commands anywhere
-root	ALL=(ALL) ALL
+root	ALL=(ALL)  ALL
 
 # Include all sudoer specifications
 #includedir /etc/sudoers.d
